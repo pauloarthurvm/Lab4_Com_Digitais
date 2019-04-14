@@ -2,10 +2,10 @@ clear;
 close all;
 
 %% Veja o help da função rcosfir para compreender os parâmetros a seguir
-fim=5;
-T=1;
-f=10;
-delta=T/f;
+fim = 5;
+T = 1;
+f = 10;
+delta = T / f;
 alfa1 = 0.25;
 alfa2 = 0.5;
 alfa3 = 0.75;
@@ -115,39 +115,40 @@ hold off
 %------------------------
 conta = 0;
 W = 1;
-f1 = (1-alfa2)*W;
+f1 = (1-alfa1)*W;
 
-for ff = -2*(2*W-f1):0.01:-(2*W-f1)-0.01
+for ff = -2*(2*W-f1) : 0.01 : -(2*W-f1)-0.01
     conta = conta + 1;
     H(conta) = 0;
     f(conta) = ff;
 end 
-for ff=-(2*W-f1):0.01:-f1-0.01
-    conta=conta+1;
-    H(conta)=(1/(4*W))*(1+cos(pi/(2*W*alfa2)*(abs(ff)-W*(1-alfa2))));
-    f(conta)=ff;
+for ff = -(2*W-f1) : 0.01:-f1-0.01
+    conta = conta + 1;
+    H(conta) = (1/(4*W))*(1+cos(pi/(2*W*alfa1)*(abs(ff)-W*(1-alfa1))));
+    f(conta) = ff;
 end    
-for ff=-f1:0.01:f1
-    conta=conta+1;
-    H(conta)=1/(2*W);
-    f(conta)=ff;
+for ff = -f1 : 0.01 : f1
+    conta = conta+1;
+    H(conta) = 1/(2*W);
+    f(conta) = ff;
 end
-for ff=f1+0.01:0.01:(2*W-f1)
-    conta=conta+1;
-    H(conta)=(1/(4*W))*(1+cos(pi/(2*W*alfa2)*(abs(ff)-W*(1-alfa2))));
-    f(conta)=ff;
+for ff = f1+0.01:0.01:(2*W-f1)
+    conta = conta+1;
+    H(conta) = (1/(4*W))*(1+cos(pi/(2*W*alfa1)*(abs(ff)-W*(1-alfa1))));
+    f(conta) = ff;
 end    
-for ff=(2*W-f1)+0.01:0.01:2*(2*W-f1)
-    conta=conta+1;
-    H(conta)=0;
-    f(conta)=ff;
+for ff = (2*W-f1)+0.01:0.01:2*(2*W-f1)
+    conta = conta+1;
+    H(conta) = 0;
+    f(conta) = ff;
 end 
 
+%Figure 5
 figure
-plot(f,2*W*H)
+plot(f, 2*W*H)
 axis([-3 3 0 1.1])
 grid
-legend('\alpha=0.5');
+legend('\alpha = 0.25');
 xlabel('\times R/2 (Hz)');
 ylabel('H(f)');
 
